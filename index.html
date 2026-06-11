@@ -540,6 +540,72 @@
     margin-bottom: 8px;
   }
 
+  /* ── REACH OUT CARD ── */
+  .reach-out-card {
+    background: var(--canvas);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .reach-out-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .reach-out-toggle:hover { background: rgba(123,63,212,0.04); }
+  .reach-out-toggle strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--indigo);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .reach-out-toggle p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .reach-out-arrow {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--violet);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .reach-out-form {
+    padding: 0 20px 20px;
+  }
+  .reach-out-form .field-group { margin-bottom: 12px; }
+  .btn-send {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--grad);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    padding: 11px 24px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: opacity 0.2s;
+  }
+  .btn-send:hover { opacity: 0.88; }
+  .reach-out-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: italic;
+  }
+
   /* ── NEXT STEPS END CARD ── */
   .end-card {
     background: var(--grad);
@@ -707,7 +773,7 @@
     header, .hero, .section.how-it-works, .form-nav,
     .progress-bar-wrap, .resources-section, .find-center,
     footer, .callout-banner, .btn-futuriti, .futuriti-cta,
-    .end-card { display: none !important; }
+    .end-card, .reach-out-card { display: none !important; }
     body { background: #fff; font-size: 12px; }
     .tool-wrapper { border: none; box-shadow: none; }
     .tool-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -792,7 +858,7 @@
       <div class="icon">📍</div>
       <div>
         <strong>Adult Education Centers are free — and closer than you think.</strong>
-        <p>Kentucky Adult Education (KYAE) centers offer free GED prep, career coaching, and connections to financial aid. A College &amp; Career Navigator will help you build on the work you do here. <a href="https://adulteducation.ky.gov/Pages/Find-A-Provider.aspx" target="_blank">Find a center near you →</a></p>
+        <p>Kentucky Adult Education (KYAE) centers offer free GED prep, career coaching, and connections to financial aid. A College &amp; Career Navigator will help you build on the work you do here. <a href="https://kyae.ky.gov/Students/Pages/find-a-kyae-center.aspx" target="_blank">Find a center near you →</a></p>
       </div>
     </div>
   </div>
@@ -999,12 +1065,40 @@
             <textarea placeholder="This week, I could..." style="min-height:70px"></textarea>
           </div>
 
+          <div class="reach-out-card">
+            <div class="reach-out-toggle" onclick="toggleReachOut()">
+              <div>
+                <strong>Want someone to reach out to you?</strong>
+                <p>If you'd like a real person from Kentucky Adult Education to follow up, share your contact info below. We'll only use it to connect you — nothing else gets sent.</p>
+              </div>
+              <span class="reach-out-arrow" id="reachOutArrow">＋</span>
+            </div>
+            <div class="reach-out-form" id="reachOutForm" style="display:none">
+              <div class="field-group">
+                <label>Your name</label>
+                <input type="text" id="roName" placeholder="First and last name">
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                <div class="field-group">
+                  <label>Phone or email</label>
+                  <input type="text" id="roContact" placeholder="Best way to reach you">
+                </div>
+                <div class="field-group">
+                  <label>Zip code</label>
+                  <input type="text" id="roZip" placeholder="e.g. 40601" maxlength="5">
+                </div>
+              </div>
+              <button class="btn-send" onclick="sendReachOut()">Send My Info to Kentucky Adult Education →</button>
+              <p class="reach-out-note">This only sends your name, contact info, and zip code — none of your form answers are shared.</p>
+            </div>
+          </div>
+
           <div class="end-card">
             <h3>You've got a plan. Now let's make it happen.</h3>
             <p>Print this page and bring it to your nearest Adult Education Center. A College &amp; Career Navigator will sit down with you — for free — and help you map out your next steps, connect you with resources, and keep you on track.</p>
             <div class="end-actions">
               <button class="btn-white" onclick="window.print()">🖨️ Print My Plan</button>
-              <a href="https://adulteducation.ky.gov/Pages/Find-A-Provider.aspx" target="_blank" class="btn-outline-white">📍 Find a Center Near Me</a>
+              <a href="https://kyae.ky.gov/Students/Pages/find-a-kyae-center.aspx" target="_blank" class="btn-outline-white">📍 Find a Center Near Me</a>
             </div>
           </div>
         </div>
@@ -1071,7 +1165,7 @@
   <div class="find-center">
     <h2>Ready to take the next step?</h2>
     <p>Adult Education Centers across Kentucky offer free career coaching, GED prep, and financial aid connections — all at no cost to you.</p>
-    <a href="https://adulteducation.ky.gov/Pages/Find-A-Provider.aspx" target="_blank" class="find-center-btn">Find an Adult Education Center Near You</a>
+    <a href="https://kyae.ky.gov/Students/Pages/find-a-kyae-center.aspx" target="_blank" class="find-center-btn">Find an Adult Education Center Near You</a>
   </div>
 </div>
 
@@ -1122,6 +1216,33 @@
     const cb = el.querySelector('input');
     cb.checked = !cb.checked;
     el.classList.toggle('selected', cb.checked);
+  }
+
+  function toggleReachOut() {
+    const form = document.getElementById('reachOutForm');
+    const arrow = document.getElementById('reachOutArrow');
+    if (form.style.display === 'none') {
+      form.style.display = 'block';
+      arrow.textContent = '−';
+    } else {
+      form.style.display = 'none';
+      arrow.textContent = '＋';
+    }
+  }
+
+  function sendReachOut() {
+    const name = document.getElementById('roName').value.trim();
+    const contact = document.getElementById('roContact').value.trim();
+    const zip = document.getElementById('roZip').value.trim();
+    if (!name || !contact) {
+      alert('Please enter your name and a way to reach you.');
+      return;
+    }
+    const subject = encodeURIComponent('Futuriti Adult Learner Hub — Someone wants to connect');
+    const body = encodeURIComponent(
+      `Hi,\n\nSomeone used the Futuriti Adult Learner Hub and would like to be connected with their local Adult Education Center.\n\nName: ${name}\nContact: ${contact}\nZip Code: ${zip || 'Not provided'}\n\nPlease reach out to help them take their next step.\n\n— Sent from futuriti.org`
+    );
+    window.location.href = `mailto:KYAEinfo@ky.gov?subject=${subject}&body=${body}`;
   }
 
   // Pill & barrier checkbox visual toggle
