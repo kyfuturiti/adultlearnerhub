@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adult Learner Hub | Futuriti</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --grad: linear-gradient(135deg, #2B4EE8 0%, #7B3FD4 50%, #C040E8 100%);
+    --grad-soft: linear-gradient(135deg, rgba(43,78,232,0.08) 0%, rgba(192,64,232,0.08) 100%);
+    --indigo: #2B4EE8;
+    --violet: #7B3FD4;
+    --purple: #C040E8;
+    --canvas: #f8f7ff;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --muted: #6b6b8a;
+    --border: rgba(123,63,212,0.15);
+    --card-radius: 16px;
+    --font: 'Poppins', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--canvas);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--grad);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+  }
+  .logo-text {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .logo-text span { opacity: 0.75; font-weight: 400; font-size: 14px; margin-left: 10px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--grad);
+    padding: 64px 32px 96px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+  }
+  .hero-curve {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+  }
+  .hero-curve svg {
+    display: block;
+    width: 100%;
+    height: 64px;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    padding: 4px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-logo {
+    height: 110px;
+    width: auto;
+    display: block;
+    margin: 0 auto 24px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 720px;
+    margin: 0 auto 16px;
+  }
+  .hero p {
+    font-size: 17px;
+    opacity: 0.88;
+    max-width: 580px;
+    margin: 0 auto 36px;
+    font-weight: 400;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num {
+    display: block;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-size: 12px;
+    opacity: 0.8;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── SECTION ── */
+  .section { padding: 56px 0; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 620px;
+  }
+
+  /* ── CALLOUT ── */
+  .callout-banner {
+    background: var(--grad-soft);
+    border: 1.5px solid var(--border);
+    border-radius: var(--card-radius);
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .callout-banner .icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  .callout-banner strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--indigo);
+    margin-bottom: 4px;
+  }
+  .callout-banner p { font-size: 14px; color: var(--muted); margin: 0; }
+  .callout-banner a { color: var(--indigo); font-weight: 600; text-decoration: none; }
+  .callout-banner a:hover { text-decoration: underline; }
+
+  /* ── HOW IT WORKS ── */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .step-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--card-radius);
+    padding: 24px 20px;
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 100px;
+    background: var(--grad);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .step-card h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .step-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── TOOL WRAPPER ── */
+  .tool-wrapper {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 32px;
+    box-shadow: 0 4px 32px rgba(43,78,232,0.07);
+  }
+  .tool-header {
+    background: var(--grad);
+    padding: 28px 32px;
+    color: #fff;
+  }
+  .tool-header h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .tool-header p { font-size: 13px; opacity: 0.85; }
+
+  /* ── PROGRESS ── */
+  .progress-bar-wrap { padding: 20px 32px 0; background: var(--white); }
+  .progress-labels { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .progress-step-lbl {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    text-align: center;
+    flex: 1;
+    transition: color 0.2s;
+    padding: 0 2px;
+  }
+  .progress-step-lbl.active {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .progress-track {
+    height: 6px;
+    background: rgba(123,63,212,0.1);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--grad);
+    border-radius: 100px;
+    transition: width 0.4s ease;
+  }
+  .progress-count {
+    text-align: right;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    padding-bottom: 4px;
+  }
+
+  /* ── FORM ── */
+  .form-body { padding: 28px 32px; }
+  .form-section { display: none; }
+  .form-section.active { display: block; }
+  .form-section h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .form-section .section-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .field-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
+  .field-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .field-group .hint {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: -2px;
+    margin-bottom: 2px;
+  }
+  .field-group textarea {
+    font-family: var(--font);
+    font-size: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--text);
+    background: var(--canvas);
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+  }
+  .field-group textarea:focus { border-color: var(--violet); background: #fff; }
+
+  .field-group input[type="text"],
+  .field-group input[type="email"],
+  .field-group input[type="tel"],
+  .field-group input[type="url"],
+  .field-group select {
+    font-family: var(--font);
+    font-size: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: var(--text);
+    background: var(--canvas);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .field-group input:focus, .field-group select:focus { border-color: var(--violet); background: #fff; }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field-row .field-group { margin-bottom: 0; }
+
+  /* ── INTENT PILLS ── */
+  .sub-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 12px;
+  }
+  .intent-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .intent-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--canvas);
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .intent-pill:hover { border-color: var(--violet); background: #fff; }
+  .intent-pill input[type="checkbox"] {
+    accent-color: var(--violet);
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+  .intent-pill.checked { border-color: var(--violet); background: rgba(123,63,212,0.07); color: var(--indigo); }
+
+  /* ── BARRIER CARDS ── */
+  .barrier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .barrier-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--canvas);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .barrier-card .b-icon { font-size: 18px; flex-shrink: 0; }
+  .barrier-card:hover { border-color: var(--violet); background: #fff; }
+  .barrier-card input[type="checkbox"] { display: none; }
+  .barrier-card.checked {
+    border-color: var(--violet);
+    background: rgba(123,63,212,0.12);
+    box-shadow: 0 0 0 2px var(--violet);
+  }
+  .barrier-card.checked .b-icon { position: relative; }
+  .barrier-card.checked::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: var(--grad);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .barrier-card { position: relative; }
+
+  /* ── SECTOR GRID ── */
+  .sector-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .sector-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: var(--canvas);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .sector-item .emoji { font-size: 24px; }
+  .sector-item:hover { border-color: var(--violet); color: var(--text); }
+  .sector-item.selected { border-color: var(--violet); background: rgba(123,63,212,0.07); color: var(--indigo); }
+  .sector-item input { display: none; }
+
+  /* ── CAREER TABLE ── */
+  .career-table-wrap { overflow-x: auto; margin-bottom: 16px; }
+  .career-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .career-table th {
+    background: var(--grad-soft);
+    color: var(--violet);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 10px 10px;
+    text-align: left;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .career-table td { padding: 8px 6px; border-bottom: 1px solid rgba(123,63,212,0.08); }
+  .career-table td input, .career-table td select {
+    font-family: var(--font);
+    font-size: 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    width: 100%;
+    background: var(--canvas);
+    color: var(--text);
+    outline: none;
+  }
+  .career-table td input:focus, .career-table td select:focus { border-color: var(--violet); background: #fff; }
+
+  /* ── FUTURITI CTA ── */
+  .futuriti-cta {
+    background: var(--grad-soft);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .futuriti-cta p { font-size: 13px; color: var(--muted); margin: 0; }
+  .futuriti-cta strong { color: var(--text); }
+  .btn-futuriti {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--grad);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    padding: 10px 22px;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .btn-futuriti:hover { opacity: 0.88; }
+
+  /* ── STRENGTHS PROMPTS ── */
+  .strength-prompt {
+    background: var(--canvas);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .strength-prompt label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .strength-prompt .prompt-hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .strength-prompt textarea {
+    font-family: var(--font);
+    font-size: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    width: 100%;
+    min-height: 80px;
+    resize: vertical;
+    background: #fff;
+    color: var(--text);
+    outline: none;
+    line-height: 1.6;
+  }
+  .strength-prompt textarea:focus { border-color: var(--violet); }
+
+  /* ── SKILLS PILLS ── */
+  .skills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* ── NEXT STEPS END CARD ── */
+  .end-card {
+    background: var(--grad);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+    color: #fff;
+    margin-top: 8px;
+  }
+  .end-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .end-card p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 24px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .end-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    color: var(--indigo);
+    border: none;
+    border-radius: 100px;
+    padding: 12px 28px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-white:hover { opacity: 0.92; }
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 100px;
+    padding: 10px 26px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+  /* ── NAV BUTTONS ── */
+  .form-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px 28px;
+    border-top: 1.5px solid var(--border);
+    gap: 12px;
+  }
+  .btn-back, .btn-next, .btn-print {
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 100px;
+    padding: 11px 28px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-back {
+    background: var(--canvas);
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+  }
+  .btn-back:hover { border-color: var(--violet); color: var(--violet); }
+  .btn-next { background: var(--grad); color: #fff; margin-left: auto; }
+  .btn-next:hover { opacity: 0.88; }
+
+  /* ── RESOURCES ── */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .resource-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--card-radius);
+    padding: 22px 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .resource-card:hover { border-color: var(--violet); box-shadow: 0 4px 18px rgba(123,63,212,0.1); }
+  .resource-icon { font-size: 26px; }
+  .resource-card h3 { font-size: 15px; font-weight: 700; }
+  .resource-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .resource-tag {
+    display: inline-block;
+    background: var(--grad-soft);
+    color: var(--violet);
+    border-radius: 100px;
+    padding: 3px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: auto;
+    width: fit-content;
+  }
+
+  /* ── FIND CENTER ── */
+  .find-center {
+    background: var(--grad);
+    border-radius: 20px;
+    padding: 48px 40px;
+    text-align: center;
+    color: #fff;
+    margin: 0 0 64px;
+  }
+  .find-center h2 { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
+  .find-center p { font-size: 15px; opacity: 0.88; max-width: 480px; margin: 0 auto 28px; }
+  .find-center-btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--indigo);
+    border-radius: 100px;
+    padding: 13px 32px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .find-center-btn:hover { opacity: 0.92; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--grad);
+    padding: 24px 32px;
+    text-align: center;
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+  }
+  footer a { color: #fff; }
+
+  /* ── PRINT ── */
+  @media print {
+    header, .hero, .section.how-it-works, .form-nav,
+    .progress-bar-wrap, .resources-section, .find-center,
+    footer, .callout-banner, .btn-futuriti, .futuriti-cta,
+    .end-card { display: none !important; }
+    body { background: #fff; font-size: 12px; }
+    .tool-wrapper { border: none; box-shadow: none; }
+    .tool-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .form-section { display: block !important; page-break-inside: avoid; margin-bottom: 20px; }
+    .form-section h3 { margin-top: 18px; border-top: 1px solid #ccc; padding-top: 12px; }
+    .field-group textarea, .strength-prompt textarea,
+    .career-table td input, .career-table td select { border: 1px solid #999; background: #fff; }
+    .intent-pill, .barrier-card, .sector-item { border: 1px solid #aaa; }
+    .print-header { display: block !important; text-align: center; padding: 20px 0 10px; border-bottom: 2px solid #333; margin-bottom: 20px; }
+    .print-header h2 { font-size: 18px; font-weight: 700; color: #333; }
+    .print-header p { font-size: 12px; color: #666; }
+  }
+  .print-header { display: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero { padding: 40px 20px 48px; }
+    .hero-stats { gap: 24px; }
+    .form-body { padding: 20px 18px; }
+    .form-nav { padding: 16px 18px 22px; }
+    .progress-bar-wrap { padding: 16px 18px 0; }
+    .progress-step-lbl { font-size: 10px; }
+    .field-row { grid-template-columns: 1fr; }
+    .barrier-grid { grid-template-columns: 1fr; }
+    .sector-grid { grid-template-columns: repeat(2, 1fr); }
+    .intent-grid { gap: 6px; }
+    .find-center { padding: 36px 24px; }
+    .tool-header { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- HERO -->
+<div class="hero">
+  <img src="data:image/png;base64,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" alt="Futuriti - How Kentuckians find their future" class="hero-logo">
+  <div class="hero-eyebrow">Adult Learner Hub</div>
+  <h1>Your next chapter starts here.</h1>
+  <p>Whether you're earning your GED, changing careers, or building new skills — Futuriti has Kentucky-specific tools and resources to help you find the path forward.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">700+</span><span class="lbl">Kentucky Careers to Explore</span></div>
+    <div class="hero-stat"><span class="num">$1M</span><span class="lbl">Lifetime Earnings Boost<br>with a Degree</span></div>
+    <div class="hero-stat"><span class="num">Free</span><span class="lbl">Always Free for Kentuckians</span></div>
+  </div>
+  <div class="hero-curve">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,48 C360,0 1080,64 1440,16 L1440,64 L0,64 Z" fill="#f8f7ff"/>
+    </svg>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="section how-it-works">
+    <div class="section-label">Getting Started</div>
+    <div class="section-title">Plan your path in 5 minutes — then take it further.</div>
+    <p class="section-sub">Use this tool to think through where you are, what you want, and what's possible. When you're done, print your results and bring them to your nearest Adult Education Center — where a College &amp; Career Navigator can help you turn your plan into action, for free.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Start with your story</h3>
+        <p>Share what brings you here and what you're hoping to do.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Know your strengths</h3>
+        <p>Reflect on what you're good at and where you want to grow.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Explore careers</h3>
+        <p>Browse 700+ Kentucky careers that match your interests.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Visit a Navigator</h3>
+        <p>Bring your plan to a free Adult Education Center near you.</p>
+      </div>
+    </div>
+    <div class="callout-banner">
+      <div class="icon">📍</div>
+      <div>
+        <strong>Adult Education Centers are free — and closer than you think.</strong>
+        <p>Kentucky Adult Education (KYAE) centers offer free GED prep, career coaching, and connections to financial aid. A College &amp; Career Navigator will help you build on the work you do here. <a href="https://adulteducation.ky.gov/Pages/Find-A-Provider.aspx" target="_blank">Find a center near you →</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL -->
+  <div class="section">
+    <div class="section-label">Self-Discovery Tool</div>
+    <div class="section-title">My Career &amp; Education Plan</div>
+    <p class="section-sub">Answer a few questions about yourself, explore careers that interest you, and leave with a plan to take to your local Adult Education Center.</p>
+
+    <div class="tool-wrapper">
+      <div class="tool-header">
+        <h2>My Career &amp; Education Plan</h2>
+        <p>Takes about 5 minutes · Print when complete · Bring to your Adult Education Center</p>
+      </div>
+
+      <!-- Print-only header -->
+      <div class="print-header">
+        <h2>My Career &amp; Education Plan — Futuriti</h2>
+        <p>Completed on ____/____/________ · Bring this to your local Adult Education Center</p>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-bar-wrap">
+        <div class="progress-labels">
+          <span class="progress-step-lbl active" onclick="goToStep(0)">My Starting Point</span>
+          <span class="progress-step-lbl" onclick="goToStep(1)">What's in the Way</span>
+          <span class="progress-step-lbl" onclick="goToStep(2)">My Strengths</span>
+          <span class="progress-step-lbl" onclick="goToStep(3)">Career Exploration</span>
+          <span class="progress-step-lbl" onclick="goToStep(4)">What's Next</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
+        <div class="progress-count" id="progressCount">Step 1 of 5</div>
+      </div>
+
+      <div class="form-body">
+
+        <!-- STEP 1: Starting Point -->
+        <div class="form-section active" id="step-0">
+          <h3>Your Starting Point</h3>
+          <p class="section-desc">There's no wrong answer here. Just tell us a little about what brought you here and what you're hoping to do.</p>
+
+          <div class="field-group">
+            <label>What's your name?</label>
+            <div class="field-row">
+              <input type="text" placeholder="First name">
+              <input type="text" placeholder="Last name">
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label>What brings you here today?</label>
+            <div class="hint">There's no right answer. Maybe you want a better job, want to finish a degree, or aren't sure yet — that's okay.</div>
+            <textarea placeholder="I'm here because..."></textarea>
+          </div>
+
+          <div class="sub-heading">I'm interested in: (pick all that apply)</div>
+          <div class="intent-grid">
+            <label class="intent-pill"><input type="checkbox"> Earning my GED</label>
+            <label class="intent-pill"><input type="checkbox"> Getting a certificate or credential</label>
+            <label class="intent-pill"><input type="checkbox"> Earning a degree</label>
+            <label class="intent-pill"><input type="checkbox"> Finding a job</label>
+            <label class="intent-pill"><input type="checkbox"> Changing careers</label>
+            <label class="intent-pill"><input type="checkbox"> Learning new skills</label>
+            <label class="intent-pill"><input type="checkbox"> Improving my English</label>
+            <label class="intent-pill"><input type="checkbox"> Not sure yet — just exploring</label>
+          </div>
+        </div>
+
+        <!-- STEP 2: Barriers -->
+        <div class="form-section" id="step-1">
+          <h3>What's Getting in the Way?</h3>
+          <p class="section-desc">Life can make it hard to focus on education and career goals. If any of these are things you're dealing with, just tap them — your local Adult Education Center can connect you with free help.</p>
+
+          <div class="barrier-grid">
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">👶</span>Childcare</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">🚗</span>Transportation</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">🏠</span>Housing</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">🍎</span>Food or groceries</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">💰</span>Money or bills</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">📶</span>Internet access</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">🧠</span>Mental health</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">📚</span>Learning challenges</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">👔</span>Work clothes or supplies</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">👁️</span>Vision or hearing</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">❤️‍🩹</span>Personal safety</label>
+            <label class="barrier-card"><input type="checkbox"><span class="b-icon">🤝</span>Addiction (self or loved one)</label>
+          </div>
+
+          <div class="field-group">
+            <label>Anything else on your mind?</label>
+            <div class="hint">Is there something else that's making this harder? Your navigator can help.</div>
+            <textarea placeholder="Optional — share anything else you'd want a navigator to know..." style="min-height:80px"></textarea>
+          </div>
+
+          <div class="callout-banner" style="margin-top:20px">
+            <div class="icon">💡</div>
+            <div>
+              <strong>You don't have to figure this out alone.</strong>
+              <p>A College &amp; Career Navigator can connect you with free local resources for any of the challenges above — childcare assistance, transportation help, housing support, and more.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Strengths & Goals -->
+        <div class="form-section" id="step-2">
+          <h3>Your Strengths &amp; Goals</h3>
+          <p class="section-desc">You already have skills and strengths that will help you succeed. Let's think about what you're good at, what you want to learn, and where you want to be.</p>
+
+          <div class="strength-prompt">
+            <label>What are you good at?</label>
+            <div class="prompt-hint">Think about what people compliment you on, what comes naturally, or what you're proud of — at work, at home, or anywhere.</div>
+            <textarea placeholder="I'm good at..."></textarea>
+          </div>
+
+          <div class="strength-prompt">
+            <label>What do you want to learn or get better at?</label>
+            <div class="prompt-hint">Pick anything — a technical skill, a personal habit, or something you've always been curious about.</div>
+            <textarea placeholder="I want to learn..."></textarea>
+          </div>
+
+          <div class="sub-heading">Skills I'd like to build:</div>
+          <div class="skills-wrap">
+            <label class="intent-pill"><input type="checkbox"> Study habits</label>
+            <label class="intent-pill"><input type="checkbox"> Time management</label>
+            <label class="intent-pill"><input type="checkbox"> Money management</label>
+            <label class="intent-pill"><input type="checkbox"> Building a support system</label>
+            <label class="intent-pill"><input type="checkbox"> Professional communication</label>
+            <label class="intent-pill"><input type="checkbox"> Computer skills</label>
+            <label class="intent-pill"><input type="checkbox"> Interview prep</label>
+            <label class="intent-pill"><input type="checkbox"> Resume writing</label>
+          </div>
+
+          <div class="strength-prompt" style="margin-top:20px">
+            <label>Where do you want to be in a year?</label>
+            <div class="prompt-hint">Don't worry about having it all figured out. Just picture what "better" looks like for you — a new job, a credential, more stability, whatever matters.</div>
+            <textarea placeholder="In a year, I hope to be..."></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 4: Career Exploration -->
+        <div class="form-section" id="step-3">
+          <h3>Career Exploration</h3>
+          <p class="section-desc">Let's explore some careers that match your interests. Use Futuriti's Future Finder to look up real Kentucky data on wages, job outlook, and where to train.</p>
+
+          <div class="futuriti-cta">
+            <p><strong>Explore 700+ Kentucky careers on Futuriti</strong> — see wages, job outlook, education needed, and training locations near you.</p>
+            <a href="https://futuriti.org/future-finder" target="_blank" class="btn-futuriti">🔍 Open Future Finder</a>
+          </div>
+
+          <div class="sub-heading">What kind of work interests you?</div>
+          <div class="sector-grid">
+            <label class="sector-item" onclick="toggleSector(this)"><input type="checkbox"><span class="emoji">🏗️</span>Construction</label>
+            <label class="sector-item" onclick="toggleSector(this)"><input type="checkbox"><span class="emoji">🏥</span>Healthcare</label>
+            <label class="sector-item" onclick="toggleSector(this)"><input type="checkbox"><span class="emoji">🔬</span>Professional &amp; Technical</label>
+            <label class="sector-item" onclick="toggleSector(this)"><input type="checkbox"><span class="emoji">📚</span>Education</label>
+            <label class="sector-item" onclick="toggleSector(this)"><input type="checkbox"><span class="emoji">🏭</span>Manufacturing &amp; Logistics</label>
+            <label class="sector-item" onclick="toggleSector(this)"><input type="checkbox"><span class="emoji">✳️</span>Something else</label>
+          </div>
+
+          <div class="sub-heading">Two careers I'd like to know more about:</div>
+          <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">Use Future Finder to research these — or just write down what you know so far. Your navigator can help you fill in the details.</p>
+          <div class="career-table-wrap">
+            <table class="career-table">
+              <thead><tr><th>Job Title</th><th>What interests me about it</th><th>Education Needed</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><input type="text" placeholder="e.g. Dental Hygienist"></td>
+                  <td><input type="text" placeholder="e.g. Good pay, helping people"></td>
+                  <td><select><option value="">Not sure</option><option>No credential needed</option><option>Certificate</option><option>Associate's degree</option><option>Bachelor's degree</option></select></td>
+                </tr>
+                <tr>
+                  <td><input type="text" placeholder="e.g. Electrician"></td>
+                  <td><input type="text" placeholder="e.g. Hands-on work, always in demand"></td>
+                  <td><select><option value="">Not sure</option><option>No credential needed</option><option>Certificate</option><option>Associate's degree</option><option>Bachelor's degree</option></select></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout-banner" style="margin-top:16px">
+            <div class="icon">🎓</div>
+            <div>
+              <strong>The Work-Ready Kentucky Scholarship can help pay for training.</strong>
+              <p>If you haven't earned an associate degree yet, this scholarship covers tuition for industry-recognized certificates and credentials in high-demand fields. <a href="https://workreadykentucky.com" target="_blank">Learn more at workreadykentucky.com →</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: What's Next -->
+        <div class="form-section" id="step-4">
+          <h3>What's Next for You?</h3>
+          <p class="section-desc">You've done the hard part — you started thinking about your future. Now let's make sure you have what you need to take the next step.</p>
+
+          <div class="strength-prompt">
+            <label>If you could change one thing about your work or education situation right now, what would it be?</label>
+            <div class="prompt-hint">Think about the single biggest change that would make the most difference in your life.</div>
+            <textarea placeholder="The one thing I'd change is..."></textarea>
+          </div>
+
+          <div class="strength-prompt">
+            <label>What's the very first step you could take this week?</label>
+            <div class="prompt-hint">It can be small — making a phone call, visiting a website, asking someone for help. Progress starts with one step.</div>
+            <textarea placeholder="This week, I could..." style="min-height:70px"></textarea>
+          </div>
+
+          <div class="end-card">
+            <h3>You've got a plan. Now let's make it happen.</h3>
+            <p>Print this page and bring it to your nearest Adult Education Center. A College &amp; Career Navigator will sit down with you — for free — and help you map out your next steps, connect you with resources, and keep you on track.</p>
+            <div class="end-actions">
+              <button class="btn-white" onclick="window.print()">🖨️ Print My Plan</button>
+              <a href="https://adulteducation.ky.gov/Pages/Find-A-Provider.aspx" target="_blank" class="btn-outline-white">📍 Find a Center Near Me</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /form-body -->
+
+      <!-- NAV -->
+      <div class="form-nav" id="formNav">
+        <button class="btn-back" id="btnBack" onclick="prevStep()" style="display:none">← Back</button>
+        <button class="btn-next" id="btnNext" onclick="nextStep()">Next →</button>
+      </div>
+    </div><!-- /tool-wrapper -->
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section resources-section">
+    <div class="section-label">Resources</div>
+    <div class="section-title">More tools for adult learners</div>
+    <p class="section-sub">Futuriti connects you to programs and resources that can help fund and support your next step.</p>
+    <div class="resources-grid">
+      <a class="resource-card" href="https://workreadykentucky.com" target="_blank">
+        <div class="resource-icon">🎓</div>
+        <h3>Work-Ready Kentucky Scholarship</h3>
+        <p>Free tuition for industry-recognized certificates and credentials in high-demand sectors.</p>
+        <span class="resource-tag">Scholarships</span>
+      </a>
+      <a class="resource-card" href="https://studentaid.gov/h/apply-for-aid/fafsa" target="_blank">
+        <div class="resource-icon">📝</div>
+        <h3>FAFSA</h3>
+        <p>Apply for federal financial aid — grants, loans, and work-study — regardless of your age.</p>
+        <span class="resource-tag">Financial Aid</span>
+      </a>
+      <a class="resource-card" href="https://kya.ky.gov" target="_blank">
+        <div class="resource-icon">🔨</div>
+        <h3>Kentucky Apprentice Program</h3>
+        <p>Earn while you learn through registered apprenticeships in high-demand fields across Kentucky.</p>
+        <span class="resource-tag">Apprenticeships</span>
+      </a>
+      <a class="resource-card" href="https://futuriti.org" target="_blank">
+        <div class="resource-icon">🔍</div>
+        <h3>Futuriti Future Finder</h3>
+        <p>Explore 700+ Kentucky careers with data on wages, job outlook, training, and local employers.</p>
+        <span class="resource-tag">Career Exploration</span>
+      </a>
+      <a class="resource-card" href="https://adulteducation.ky.gov" target="_blank">
+        <div class="resource-icon">🏫</div>
+        <h3>Kentucky Adult Education</h3>
+        <p>Free GED prep, English language learning, and workforce skills training — statewide.</p>
+        <span class="resource-tag">Adult Education</span>
+      </a>
+      <a class="resource-card" href="https://futuriti.org/financial-aid" target="_blank">
+        <div class="resource-icon">💰</div>
+        <h3>Kentucky Financial Aid Dashboard</h3>
+        <p>Browse 110+ state and federal financial aid programs filtered by your situation.</p>
+        <span class="resource-tag">Financial Aid</span>
+      </a>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- FIND CENTER CTA -->
+<div class="container">
+  <div class="find-center">
+    <h2>Ready to take the next step?</h2>
+    <p>Adult Education Centers across Kentucky offer free career coaching, GED prep, and financial aid connections — all at no cost to you.</p>
+    <a href="https://adulteducation.ky.gov/Pages/Find-A-Provider.aspx" target="_blank" class="find-center-btn">Find an Adult Education Center Near You</a>
+  </div>
+</div>
+
+
+<script>
+  let currentStep = 0;
+  const totalSteps = 5;
+
+  function updateUI() {
+    document.querySelectorAll('.form-section').forEach((s, i) => {
+      s.classList.toggle('active', i === currentStep);
+    });
+    document.querySelectorAll('.progress-step-lbl').forEach((l, i) => {
+      l.classList.toggle('active', i === currentStep);
+    });
+    const pct = ((currentStep + 1) / totalSteps) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = `Step ${currentStep + 1} of ${totalSteps}`;
+
+    document.getElementById('btnBack').style.display = currentStep === 0 ? 'none' : 'inline-block';
+
+    const btnNext = document.getElementById('btnNext');
+    const formNav = document.getElementById('formNav');
+    if (currentStep === totalSteps - 1) {
+      formNav.style.display = 'flex';
+      btnNext.style.display = 'none';
+    } else {
+      formNav.style.display = 'flex';
+      btnNext.style.display = 'inline-block';
+      btnNext.textContent = 'Next →';
+    }
+
+    document.querySelector('.tool-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function nextStep() {
+    if (currentStep < totalSteps - 1) { currentStep++; updateUI(); }
+  }
+  function prevStep() {
+    if (currentStep > 0) { currentStep--; updateUI(); }
+  }
+  function goToStep(i) {
+    currentStep = i;
+    updateUI();
+  }
+
+  function toggleSector(el) {
+    const cb = el.querySelector('input');
+    cb.checked = !cb.checked;
+    el.classList.toggle('selected', cb.checked);
+  }
+
+  // Pill & barrier checkbox visual toggle
+  document.querySelectorAll('.intent-pill input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => cb.closest('.intent-pill').classList.toggle('checked', cb.checked));
+  });
+  document.querySelectorAll('.barrier-card input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => cb.closest('.barrier-card').classList.toggle('checked', cb.checked));
+  });
+  document.querySelectorAll('.skills-wrap .intent-pill input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => cb.closest('.intent-pill').classList.toggle('checked', cb.checked));
+  });
+</script>
+</body>
+</html>
