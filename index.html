@@ -773,20 +773,119 @@
     header, .hero, .section.how-it-works, .form-nav,
     .progress-bar-wrap, .resources-section, .find-center,
     footer, .callout-banner, .btn-futuriti, .futuriti-cta,
-    .end-card, .reach-out-card { display: none !important; }
+    .end-card, .reach-out-card, .form-body, .tool-header,
+    .hero-curve { display: none !important; }
     body { background: #fff; font-size: 12px; }
-    .tool-wrapper { border: none; box-shadow: none; }
-    .tool-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .form-section { display: block !important; page-break-inside: avoid; margin-bottom: 20px; }
-    .form-section h3 { margin-top: 18px; border-top: 1px solid #ccc; padding-top: 12px; }
-    .field-group textarea, .strength-prompt textarea,
-    .career-table td input, .career-table td select { border: 1px solid #999; background: #fff; }
-    .intent-pill, .barrier-card, .sector-item { border: 1px solid #aaa; }
-    .print-header { display: block !important; text-align: center; padding: 20px 0 10px; border-bottom: 2px solid #333; margin-bottom: 20px; }
-    .print-header h2 { font-size: 18px; font-weight: 700; color: #333; }
-    .print-header p { font-size: 12px; color: #666; }
+    .container { max-width: 100%; padding: 0; }
+    .tool-wrapper { border: none; box-shadow: none; border-radius: 0; }
+    .print-summary { display: block !important; padding: 20px 32px; }
   }
-  .print-header { display: none; }
+  .print-summary { display: none; }
+
+  /* Print summary styles */
+  .ps-header {
+    text-align: center;
+    padding: 24px 0 16px;
+    border-bottom: 3px solid #1a1a2e;
+    margin-bottom: 24px;
+  }
+  .ps-header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 2px;
+  }
+  .ps-header .ps-sub {
+    font-size: 12px;
+    color: #6b6b8a;
+  }
+  .ps-header .ps-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #7B3FD4;
+    margin-top: 8px;
+  }
+  .ps-section {
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+  }
+  .ps-section h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #7B3FD4;
+    border-bottom: 1.5px solid rgba(123,63,212,0.2);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  .ps-text {
+    font-size: 13px;
+    color: #1a1a2e;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .ps-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b6b8a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 3px;
+  }
+  .ps-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .ps-pill {
+    background: rgba(123,63,212,0.08);
+    border: 1px solid rgba(123,63,212,0.2);
+    border-radius: 100px;
+    padding: 3px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #7B3FD4;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .ps-career-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .ps-career-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: #7B3FD4;
+    padding: 6px 8px;
+    border-bottom: 1.5px solid rgba(123,63,212,0.2);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .ps-career-table td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    color: #1a1a2e;
+  }
+  .ps-empty { color: #999; font-style: italic; }
+  .ps-footer {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 2px solid #1a1a2e;
+    text-align: center;
+    font-size: 12px;
+    color: #6b6b8a;
+  }
+  .ps-footer strong {
+    display: block;
+    font-size: 14px;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+  }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
@@ -875,11 +974,8 @@
         <p>Takes about 5 minutes · Print when complete · Bring to your Adult Education Center</p>
       </div>
 
-      <!-- Print-only header -->
-      <div class="print-header">
-        <h2>My Career &amp; Education Plan — Futuriti</h2>
-        <p>Completed on ____/____/________ · Bring this to your local Adult Education Center</p>
-      </div>
+      <!-- Print Summary (hidden until print) -->
+      <div class="print-summary" id="printSummary"></div>
 
       <!-- Progress -->
       <div class="progress-bar-wrap">
@@ -1097,7 +1193,7 @@
             <h3>You've got a plan. Now let's make it happen.</h3>
             <p>Print this page and bring it to your nearest Adult Education Center. A College &amp; Career Navigator will sit down with you — for free — and help you map out your next steps, connect you with resources, and keep you on track.</p>
             <div class="end-actions">
-              <button class="btn-white" onclick="window.print()">🖨️ Print My Plan</button>
+              <button class="btn-white" onclick="printSummary()">🖨️ Print My Plan</button>
               <a href="https://kyae.ky.gov/Students/Pages/find-a-kyae-center.aspx" target="_blank" class="btn-outline-white">📍 Find a Center Near Me</a>
             </div>
           </div>
@@ -1149,10 +1245,10 @@
         <p>Free GED prep, English language learning, and workforce skills training — statewide.</p>
         <span class="resource-tag">Adult Education</span>
       </a>
-      <a class="resource-card" href="https://futuriti.org/financial-aid" target="_blank">
+      <a class="resource-card" href="https://futuriti.org/page/financial-aid-programs-state-and-federal" target="_blank">
         <div class="resource-icon">💰</div>
-        <h3>Kentucky Financial Aid Dashboard</h3>
-        <p>Browse 110+ state and federal financial aid programs filtered by your situation.</p>
+        <h3>Explore State &amp; Federal Financial Aid Programs</h3>
+        <p>Browse 110+ Kentucky and federal financial aid programs — scholarships, grants, and more — filtered by your situation.</p>
         <span class="resource-tag">Financial Aid</span>
       </a>
     </div>
@@ -1243,6 +1339,126 @@
       `Hi,\n\nSomeone used the Futuriti Adult Learner Hub and would like to be connected with their local Adult Education Center.\n\nName: ${name}\nContact: ${contact}\nZip Code: ${zip || 'Not provided'}\n\nPlease reach out to help them take their next step.\n\n— Sent from futuriti.org`
     );
     window.location.href = `mailto:KYAEinfo@ky.gov?subject=${subject}&body=${body}`;
+  }
+
+  function printSummary() {
+    const get = (sel) => {
+      const el = document.querySelector(sel);
+      return el ? (el.value || '').trim() : '';
+    };
+    const getCheckedLabels = (container) => {
+      const items = document.querySelectorAll(container + ' input[type="checkbox"]:checked');
+      return Array.from(items).map(cb => {
+        const label = cb.closest('label');
+        if (!label) return '';
+        let text = label.textContent.trim();
+        return text;
+      }).filter(Boolean);
+    };
+
+    // Gather data
+    const firstName = document.querySelector('#step-0 .field-row input:nth-child(1)').value.trim();
+    const lastName = document.querySelector('#step-0 .field-row input:nth-child(2)').value.trim();
+    const fullName = [firstName, lastName].filter(Boolean).join(' ') || 'Not provided';
+
+    const whyText = document.querySelector('#step-0 .field-group textarea').value.trim();
+    const intents = getCheckedLabels('#step-0 .intent-grid');
+    const barriers = getCheckedLabels('#step-1 .barrier-grid');
+    const barrierNotes = document.querySelector('#step-1 .field-group textarea') ?
+      document.querySelector('#step-1 .field-group textarea').value.trim() : '';
+
+    const strengthsEls = document.querySelectorAll('#step-2 .strength-prompt textarea');
+    const strengths = strengthsEls[0] ? strengthsEls[0].value.trim() : '';
+    const wantToLearn = strengthsEls[1] ? strengthsEls[1].value.trim() : '';
+    const inAYear = strengthsEls[2] ? strengthsEls[2].value.trim() : '';
+    const skills = getCheckedLabels('#step-2 .skills-wrap');
+
+    const sectors = getCheckedLabels('#step-3 .sector-grid');
+    const careerRows = document.querySelectorAll('#step-3 .career-table tbody tr');
+    const careers = Array.from(careerRows).map(row => {
+      const inputs = row.querySelectorAll('input, select');
+      return {
+        title: inputs[0] ? inputs[0].value.trim() : '',
+        interest: inputs[1] ? inputs[1].value.trim() : '',
+        education: inputs[2] ? (inputs[2].value || '') : ''
+      };
+    }).filter(c => c.title);
+
+    const reflectionEls = document.querySelectorAll('#step-4 .strength-prompt textarea');
+    const changeOne = reflectionEls[0] ? reflectionEls[0].value.trim() : '';
+    const firstStep = reflectionEls[1] ? reflectionEls[1].value.trim() : '';
+
+    const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const empty = '<span class="ps-empty">—</span>';
+
+    // Build HTML
+    let html = `
+      <div class="ps-header">
+        <h1>My Career &amp; Education Plan</h1>
+        <div class="ps-sub">Created on ${today} · futuriti.org</div>
+        <div class="ps-name">${fullName}</div>
+      </div>
+
+      <div class="ps-section">
+        <h2>What Brings Me Here</h2>
+        <div class="ps-text">${whyText || empty}</div>
+      </div>
+
+      <div class="ps-section">
+        <h2>What I'm Interested In</h2>
+        ${intents.length ? '<div class="ps-pills">' + intents.map(i => '<span class="ps-pill">' + i + '</span>').join('') + '</div>' : '<div class="ps-text">' + empty + '</div>'}
+      </div>`;
+
+    if (barriers.length || barrierNotes) {
+      html += `
+      <div class="ps-section">
+        <h2>Areas Where I'd Like Support</h2>
+        ${barriers.length ? '<div class="ps-pills">' + barriers.map(b => '<span class="ps-pill">' + b + '</span>').join('') + '</div>' : ''}
+        ${barrierNotes ? '<div class="ps-label" style="margin-top:8px">Additional notes</div><div class="ps-text">' + barrierNotes + '</div>' : ''}
+      </div>`;
+    }
+
+    html += `
+      <div class="ps-section">
+        <h2>My Strengths</h2>
+        <div class="ps-label">What I'm good at</div>
+        <div class="ps-text">${strengths || empty}</div>
+        <div class="ps-label">What I want to learn</div>
+        <div class="ps-text">${wantToLearn || empty}</div>
+        ${skills.length ? '<div class="ps-label">Skills I want to build</div><div class="ps-pills">' + skills.map(s => '<span class="ps-pill">' + s + '</span>').join('') + '</div>' : ''}
+      </div>
+
+      <div class="ps-section">
+        <h2>Where I Want to Be in a Year</h2>
+        <div class="ps-text">${inAYear || empty}</div>
+      </div>
+
+      <div class="ps-section">
+        <h2>Careers I'm Exploring</h2>
+        ${sectors.length ? '<div class="ps-label">Sectors of interest</div><div class="ps-pills" style="margin-bottom:12px">' + sectors.map(s => '<span class="ps-pill">' + s + '</span>').join('') + '</div>' : ''}
+        ${careers.length ? `
+        <table class="ps-career-table">
+          <thead><tr><th>Career</th><th>What Interests Me</th><th>Education Needed</th></tr></thead>
+          <tbody>${careers.map(c => '<tr><td>' + c.title + '</td><td>' + (c.interest || empty) + '</td><td>' + (c.education || empty) + '</td></tr>').join('')}</tbody>
+        </table>` : '<div class="ps-text">' + empty + '</div>'}
+      </div>
+
+      <div class="ps-section">
+        <h2>My Reflection</h2>
+        <div class="ps-label">The one thing I'd change</div>
+        <div class="ps-text">${changeOne || empty}</div>
+        <div class="ps-label">My first step this week</div>
+        <div class="ps-text">${firstStep || empty}</div>
+      </div>
+
+      <div class="ps-footer">
+        <strong>Take this plan to your nearest Adult Education Center.</strong>
+        A College &amp; Career Navigator will help you map out your next steps — for free.<br>
+        Find a center: kyae.ky.gov/Students/Pages/find-a-kyae-center.aspx
+      </div>`;
+
+    document.getElementById('printSummary').innerHTML = html;
+    setTimeout(() => window.print(), 100);
   }
 
   // Pill & barrier checkbox visual toggle
